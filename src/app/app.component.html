@@ -1,16 +1,16 @@
-<div (keydown)="onKeydown($event)">
+<div>
   <div>
     <h1 align="center">
       Welcome to {{ title }}!
     </h1>
   </div>
-  <div>
-    <!-- <ul>
+  <!-- <div>
+    <ul>
       <li class="text" *ngFor="let item of items | async">
         {{item.name}}
       </li>
-    </ul> -->
-  </div>
+    </ul>
+  </div> -->
 </div>
 <pre>
   {{items | async | json}}
