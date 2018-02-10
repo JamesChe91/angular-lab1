@@ -11,8 +11,17 @@ import { AngularFireDatabase } from 'angularfire2/database';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  items: Observable<any[]>;
   title = 'Angular Lab #1';
+  // items: Observable<any[]>;
+  age: number;
+  email: string;
+  gender: string;
+  name: string;
+  phone: string;
+  photo: string;
+  region: string;
+  surname:string;
+  visible = false;
 
   constructor(private db: AngularFireDatabase) {
   }
@@ -20,15 +29,24 @@ export class AppComponent {
   }
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
-    console.log(event.keyCode)
     if (event.keyCode === 32) {
       this.getProfile();
     }
   }
   getProfile() {
-  this.items = this.db.list('users').valueChanges()
-    .pipe(map(pickRandomItem));
+    this.visible = false;
+    this.db.list('users').valueChanges()
+      .pipe(map(pickRandomItem)).subscribe(value => {
+        this.age = value.age;
+        this.email = value.email;
+        this.gender = value.gender;
+        this.name = value.name;
+        this.phone = value.phone;
+        this.photo = value.photo;
+        this.region = value.region;
+        this.surname = value.surname;
+        this.visible = true;
+      });;
   }
 }
 function pickRandomItem(arr) {

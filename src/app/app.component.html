@@ -1,17 +1,40 @@
-<div>
-  <div>
-    <h1 align="center">
-      Welcome to {{ title }}!
-    </h1>
-  </div>
-  <!-- <div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Welcome to {{title}}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-card *ngIf="!visible">
+  <h2 align="center">Press space to see a profile</h2>
+</mat-card>
+<div *ngIf="visible" style="margin-left:auto;margin-right: auto;">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <img mat-card-avatar class="user-header-image" [src]="photo" />
+      <mat-card-title>{{name}} {{surname}}</mat-card-title>
+      <mat-card-subtitle>from {{region}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="photo" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        <strong>Gender: </strong> {{gender}}
+        <br>
+        <strong>Age: </strong> {{age}}
+        <br>
+        <strong>E-mail: </strong> {{email}}
+        <br>
+        <strong>Phone: </strong> {{phone}}
+        <br>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!-- <div>
     <ul>
       <li class="text" *ngFor="let item of items | async">
         {{item.name}}
       </li>
     </ul>
   </div> -->
-</div>
-<pre>
+<!-- <pre>
   {{items | async | json}}
-</pre>
+</pre> -->
